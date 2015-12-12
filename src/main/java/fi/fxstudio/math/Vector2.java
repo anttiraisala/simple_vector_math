@@ -155,6 +155,37 @@ public class Vector2 {
     /**********************************/
 
     /**
+     * Vectors are treated as complex numbers; raises current vector to power <i>exponent</i>.
+     * <br> http://www.milefoot.com/math/complex/exponentofi.htm
+     * <br>
+     * @param exponent
+     * @return
+     */
+    public Vector2 complexPower(Vector2 exponent){
+        Double r=this.r;
+        Double fi=this.a;
+        Double c=exponent.x;
+        Double d=exponent.y;
+
+
+        // Some intermediate values
+        Double first = Math.pow(r, c) * Math.pow(Math.E, -1.0*d*fi);
+        Double second = Math.cos(d * Math.log(r)+c*fi);
+        Double third = Math.sin(d * Math.log(r)+c*fi);
+
+        // Result is:
+        // first * ( second + i * third ) = f * ( s + i * t )
+        // = fs+fit = Re; fs, Im; ft
+
+        Double re = first * second;
+        Double im = first * third;
+
+        Vector2 result = Vector2.ofXY(re, im);
+
+        return result;
+    }
+
+    /**
      * Returns complex-conjugate-vector of current vector, i.e. x-compnent remains same but y is negated.
      * <br>https://en.wikipedia.org/wiki/Complex_conjugate
      * @return
@@ -209,6 +240,12 @@ public class Vector2 {
         return value;
     }
 
+    public Vector2 subtract(Vector2 v) {
+        Vector2 value = this.add(v.negate());
+
+        return value;
+    }
+
     /**
      * Rotate vector by a radians
      *
@@ -233,6 +270,16 @@ public class Vector2 {
         return v;
     }
 
+    public Vector2 divide(Double scalar) {
+        if(scalar==0){
+            return Vector2.ofXY(0.0, 0.0);
+        }
+
+        Vector2 v = Vector2.ofRA(this.r / scalar, this.a);
+
+        return v;
+    }
+
     /**
      * Scales (=multiplies) by vector ( i.e. complex number * complex number )
      *
@@ -241,6 +288,15 @@ public class Vector2 {
      */
     public Vector2 multiply(Vector2 vector) {
         Vector2 v = Vector2.ofRA(this.r * vector.r, this.a + vector.a);
+
+        return v;
+    }
+
+    public Vector2 divide(Vector2 vector) {
+        if(vector.a==0){
+            return Vector2.ofXY(0.0, 0.0);
+        }
+        Vector2 v = Vector2.ofRA(this.r / vector.r, this.a - vector.a);
 
         return v;
     }
@@ -256,6 +312,11 @@ public class Vector2 {
         sb.append("a:").append(a).append(';');
 
         sb.append("aDegrees:").append(DEGREES_PER_RADIAN * a).append(';');
+        if(a!=0.0){
+            sb.append("pi/a:").append(Math.PI / a).append(';');
+        } else {
+            sb.append("pi/a:0;");
+        }
 
         sb.append("}]");
 

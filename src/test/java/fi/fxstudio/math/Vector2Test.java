@@ -13,12 +13,48 @@ public class Vector2Test {
     private Double testErrorMargin = 0.000000001;
 
     @Test
+    public void complexExponent_test1(){
+        Vector2 v1 = Vector2.ofXY(2.0, 0.0);
+        Vector2 v2 = Vector2.ofXY(3.0, 0.0);
+        Vector2 vResult = v1.complexPower(v2);
+        assertEquals(8.0, vResult.getX(), testErrorMargin);
+        assertEquals(0.0, vResult.getY(), testErrorMargin);
+    }
+
+    @Test
+    public void complexExponent_test2(){
+        Vector2 v1 = Vector2.ofXY(Math.E, 0.0);
+        Vector2 v2 = Vector2.ofXY(0.0, Math.PI);
+        Vector2 vResult = v1.complexPower(v2);
+        assertEquals(-1.0, vResult.getX(), testErrorMargin);
+        assertEquals(0.0, vResult.getY(), testErrorMargin);
+    }
+
+    @Test
+    public void complexExponent_test3(){
+        Vector2 v1 = Vector2.ofRA(2.0, QUARTER_PI);
+        Vector2 v2 = Vector2.ofRA(3.0, QUARTER_PI+EIGTH_PI);
+        Vector2 vResult = v1.complexPower(v2);
+        assertEquals(0.2513089959221, vResult.getR(), testErrorMargin);
+        assertEquals(2.8228300742382, vResult.getA(), testErrorMargin);
+    }
+
+    @Test
     public void add() {
         Vector2 v1 = Vector2.ofXY(2.0, 3.0);
         Vector2 v2 = Vector2.ofXY(4.0, 8.0);
         Vector2 vResult = v1.add(v2);
         assertEquals(2.0 + 4.0, vResult.getX(), testErrorMargin);
         assertEquals(3.0 + 8.0, vResult.getY(), testErrorMargin);
+    }
+
+    @Test
+    public void subtract() {
+        Vector2 v1 = Vector2.ofXY(2.0, 3.0);
+        Vector2 v2 = Vector2.ofXY(4.0, 8.0);
+        Vector2 vResult = v1.subtract(v2);
+        assertEquals(-2.0, vResult.getX(), testErrorMargin);
+        assertEquals(-5.0, vResult.getY(), testErrorMargin);
     }
 
     @Test
@@ -33,6 +69,13 @@ public class Vector2Test {
         Vector2 v = Vector2.ofRA(2.5, RADIANS_IN_35_DEGREES);
         Vector2 v2 = v.multiply(16.5);
         assertEquals(2.5 * 16.5, v2.getR(), testErrorMargin);
+    }
+
+    @Test
+    public void divide() {
+        Vector2 v = Vector2.ofRA(10.0, RADIANS_IN_35_DEGREES);
+        Vector2 v2 = v.divide(2.0);
+        assertEquals(5.0, v2.getR(), testErrorMargin);
     }
 
     @Test
@@ -52,6 +95,15 @@ public class Vector2Test {
         Vector2 vSetR = vResult.setR(6473.8);
         assertEquals(6473.8, vSetR.getR(), testErrorMargin);
         assertEquals(vResult.getA(), vSetR.getA(), testErrorMargin);
+    }
+
+    @Test
+    public void divideByVector() {
+        Vector2 v1 = Vector2.ofXY(2.0, 3.0);
+        Vector2 v2 = Vector2.ofXY(4.0, 8.0);
+        Vector2 vResult = v1.divide(v2).multiply(v2);
+        assertEquals(v1.getR(), vResult.getR(), testErrorMargin);
+        assertEquals(v1.getA(), vResult.getA(), testErrorMargin);
     }
 
     @Test

@@ -4,6 +4,8 @@ package fi.fxstudio.math;
  * Created by fxstudio on 9.12.2015.
  */
 public class Constants {
+    public static final Double EIGTH_PI = Math.PI / 8.0;
+    public static final Double QUARTER_PI = Math.PI / 4.0;
     public static final Double HALF_PI = Math.PI / 2.0;
     public static final Double TWO_PI = Math.PI * 2.0;
     public static final Double THREE_QUARTERS_TWO_PI = Math.PI * 4.0/ 3.0;

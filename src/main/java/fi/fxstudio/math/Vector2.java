@@ -156,6 +156,7 @@ public class Vector2 {
 
     /**
      * Vectors are treated as complex numbers; raises current vector to power <i>exponent</i>.
+     * <br> https://en.wikipedia.org/wiki/Exponentiation#Computing_complex_powers
      * <br> http://www.milefoot.com/math/complex/exponentofi.htm
      * <br>
      * @param exponent

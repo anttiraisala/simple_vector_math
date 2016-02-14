@@ -17,7 +17,7 @@ Vector2 v1 = Vector2.ofXY(2.0, 3.0);
 </tr>
 
 <tr>
-<td>Create vector from polar coordinates<br>R = radius<br>A = angle in radians, counter clockwise</td>
+<td>Create vector from polar coordinates<br>R = radius ( i.e. length )<br>A = angle in radians, counter clockwise</td>
 <td><pre>
 Vector2 v = Vector2.ofRA(2.5, RADIANS_IN_35_DEGREES);
 </pre></td>

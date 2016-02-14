@@ -1,6 +1,24 @@
 # simple_vector_math
 Simple, not optimized, but working 2D-vector math.
 
+<hr/>
+
+## Getting the library
+
+Simple commands to compile into local maven repository:
+
+    git clone https://github.com/anttiraisala/simple_vector_math.git
+    cd simple_vector_math
+    mvn clean install -DskipTests=true
+
+Maven depedency:
+
+    <dependency>
+      <groupId>simple-vector-math</groupId>
+      <artifactId>essentials</artifactId>
+      <version>1.0-SNAPSHOT</version
+    </dependency>
+
 ## Features & code examples:
 
 <table>

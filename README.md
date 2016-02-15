@@ -5,13 +5,13 @@ Simple, not optimized, but working 2D-vector math.
 
 ## Get the library working
 
-### Simple commands to compile into local maven repository:
+### Simple commands to compile into local maven repository
 
     git clone https://github.com/anttiraisala/simple_vector_math.git
     cd simple_vector_math
     mvn clean install -DskipTests=true
 
-### Maven depedency:
+### Maven depedency
 
     <dependency>
       <groupId>simple-vector-math</groupId>
@@ -24,7 +24,7 @@ Simple, not optimized, but working 2D-vector math.
     import fi.fxstudio.math.Vector2;
     import static fi.fxstudio.math.Constants.*;
 
-## Features & code examples:
+## Features & code examples
 
 <table>
 <tr>

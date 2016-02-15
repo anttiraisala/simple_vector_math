@@ -18,9 +18,10 @@ simple 2D vector math library
 ### Maven depedency
 
     <dependency>
-      <groupId>simple-vector-math</groupId>
-      <artifactId>essentials</artifactId>
-      <version>1.0-SNAPSHOT</version
+        <!-- https://github.com/anttiraisala/simple_vector_math -->
+        <groupId>simple-vector-math</groupId>
+        <artifactId>essentials</artifactId>
+        <version>1.0-SNAPSHOT</version
     </dependency>
 
 ### Java imports

@@ -3,6 +3,10 @@ Simple, not optimized, but working 2D-vector math.
 
 <hr/>
 
+###### Meta tags
+
+    simple 2D vector math library
+
 ## Get the library working
 
 ### Simple commands to compile into local maven repository

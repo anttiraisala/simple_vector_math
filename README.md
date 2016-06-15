@@ -5,7 +5,7 @@ Simple, not optimized, but working 2D-vector math.
 
 ###### Meta tags
 
-simple 2D vector math library
+java simple 2D vector math library
 
 ## Get the library working
 

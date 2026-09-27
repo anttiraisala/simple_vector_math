@@ -29,6 +29,13 @@ public class Vector2 {
      * @return
      */
     public static Vector2 ofXY(double x, double y) {
+        if(checkForFinity(x)==false){
+            throw new IllegalArgumentException("X is +-infinity");
+        }
+        if(checkForFinity(y)==false){
+            throw new IllegalArgumentException("y is +-infinity");
+        }
+
         Vector2 v = new Vector2();
         v.x = x;
         v.y = y;
@@ -45,6 +52,13 @@ public class Vector2 {
      * @return
      */
     public static Vector2 ofRA(double r, double a) {
+        if(checkForFinity(r)==false){
+            throw new IllegalArgumentException("R is +-infinity");
+        }
+        if(checkForFinity(a)==false){
+            throw new IllegalArgumentException("A is +-infinity");
+        }
+
         Vector2 v = new Vector2();
         v.r = r;
         v.a = a;
@@ -105,6 +119,20 @@ public class Vector2 {
         }
     }
 
+    /**
+     * Checks that value is not positive nor negative infinity.
+     * @param v
+     * @return true, if value not infinite
+     */
+    private static boolean checkForFinity(double v) {
+        if (v==Double.POSITIVE_INFINITY || v==Double.NEGATIVE_INFINITY) {
+            return false;
+        }
+
+        return true;
+    }
+
+
     /**********************************/
     /**********************************/
     /**********************************/
@@ -163,6 +191,10 @@ public class Vector2 {
      * @return
      */
     public Vector2 complexPower(Vector2 exponent){
+        if(this.r==0.0 && exponent.r==0.0){
+            throw new ArithmeticException("0 to power 0 is undefined");
+        }
+
         Double r=this.r;
         Double fi=this.a;
         Double c=exponent.x;
@@ -224,9 +256,11 @@ public class Vector2 {
      * @return
      */
     public Vector2 normalize() {
-        Vector2 v = setR(1.0);
+        if(this.r==0.0) {
+            throw new ArithmeticException("Cannot normalize a zero vector");
+        }
 
-        return v;
+        return this.setR(1.0);
     }
 
     /**
@@ -265,15 +299,15 @@ public class Vector2 {
      * @param scalar
      * @return
      */
-    public Vector2 multiply(Double scalar) {
+    public Vector2 multiplyWith(Double scalar) {
         Vector2 v = Vector2.ofRA(this.r * scalar, this.a);
 
         return v;
     }
 
-    public Vector2 divide(Double scalar) {
+    public Vector2 divideBy(Double scalar) {
         if(scalar==0){
-            return Vector2.ofXY(0.0, 0.0);
+            throw new ArithmeticException("Cannot divide by zero scalar");
         }
 
         Vector2 v = Vector2.ofRA(this.r / scalar, this.a);
@@ -287,15 +321,15 @@ public class Vector2 {
      * @param vector
      * @return
      */
-    public Vector2 multiply(Vector2 vector) {
+    public Vector2 multiplyWith(Vector2 vector) {
         Vector2 v = Vector2.ofRA(this.r * vector.r, this.a + vector.a);
 
         return v;
     }
 
-    public Vector2 divide(Vector2 vector) {
-        if(vector.a==0){
-            return Vector2.ofXY(0.0, 0.0);
+    public Vector2 divideBy(Vector2 vector) {
+        if(vector.r==0){
+            throw new ArithmeticException("Cannot divide by a zero vector");
         }
         Vector2 v = Vector2.ofRA(this.r / vector.r, this.a - vector.a);
 
